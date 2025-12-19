@@ -8,6 +8,11 @@ Nessuna duplicazione: Non vengono generate immagini o video differenti per ogni 
 
 Efficienza: Questo approccio garantisce che il brand message sia identico su ogni piattaforma e ottimizza l'uso delle risorse API (OpenAI) e dello spazio di archiviazione.
 
+⚠️ Nel codice JSON ho posizionato vari placeholder per tutte le occorrenze di dati sensibili.
+Tutti i placeholder iniziano in questo modo:
+<PUT HERE ...>
+Cercate nel codice i placeholder e sostituiteli con i vosti dati e/o percorsi.
+
 1. Architettura Generale
 Il sistema gestisce il ciclo di vita completo di un post social in quattro fasi:
 
