@@ -73,3 +73,15 @@ Uniformità: Si evita il rischio che l'AI generi immagini leggermente diverse (e
 Velocità: Il download da Google Drive avviene una sola volta, velocizzando l'intero processo di archiviazione FTP.
 
 Documentazione Tecnica n8n Versione: 2.3 Focus: Asset Unico Cross-Social
+
+## ⚖️ Licenza e Condizioni d'Uso
+Questo progetto è rilasciato sotto licenza **PolyForm Noncommercial 1.0.0**. 
+È consentito:
+- Lo studio del codice e dei workflow.
+- L'uso personale non a scopo di lucro.
+
+È rigorosamente vietato:
+- L'utilizzo dei workflow per attività commerciali, agenzie o servizi a pagamento senza autorizzazione.
+- La vendita del codice o di derivati.
+
+Per proposte di collaborazione o licenze commerciali, contattami su: orvio@yahoo.com
