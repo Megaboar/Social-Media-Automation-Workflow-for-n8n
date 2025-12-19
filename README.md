@@ -13,7 +13,7 @@ Tutti i placeholder iniziano in questo modo:
 <PUT HERE ...>
 Cercate nel codice i placeholder e sostituiteli con i vosti dati e/o percorsi.
 
-1. Architettura Generale
+## 1. Architettura Generale
 Il sistema gestisce il ciclo di vita completo di un post social in quattro fasi:
 
 Ingresso: Ricezione dati da Google Form/Sheet.
@@ -24,7 +24,7 @@ Approvazione: Validazione umana tramite ricezione mail di approvazione gestita t
 
 Pubblicazione Multipiattaforma: Invio del media master e del testo specifico a Facebook, Instagram, TikTok, YouTube, X e WhatsApp.
 
-2. Workflow 1: Acquisizione, Generazione e Archiviazione
+## 2. Workflow 1: Acquisizione, Generazione e Archiviazione
 Questo workflow gestisce la creazione dell'asset unico.
 
 Fase 1: Normalizzazione Dati (Normalize Data1)
@@ -46,7 +46,7 @@ Asset Master: Il file viene caricato via FTP in una cartella specifica.
 
 URL Pubblico: Viene generato un singolo public_url che servirà da sorgente per tutti i nodi di pubblicazione social successivi.
 
-3. Workflow 2: Approvazione e Pubblicazione
+## 3. Workflow 2: Approvazione e Pubblicazione
 Gestisce l'invio dell'asset master ai vari endpoint API.
 
 Fase 1: Filtro di Approvazione
@@ -61,7 +61,7 @@ YouTube/TikTok: Utilizzano lo stesso file video per Shorts e post.
 
 X/WhatsApp: Distribuiscono il medesimo media ai rispettivi destinatari.
 
-4. Specifiche delle Colonne (Tab Variabili)
+## 4. Specifiche delle Colonne (Tab Variabili)
 Per mantenere questo controllo centralizzato, il database Variabili_di_input-output utilizza:
 
 common_image_url / common_video_url: I link agli asset generati validi per l'intera sessione.
@@ -70,14 +70,187 @@ media_source: Indica se il media comune proviene da AI o da un file personale ca
 
 status: Monitora lo stato di ogni singolo post (es. "PUBLISHED" per Facebook, "ERROR" per Instagram), mantenendo il media invariato.
 
-5. Vantaggi del Sistema
+## 5. Vantaggi del Sistema
 Risparmio Token: Generando un'unica immagine con DALL-E per 6 social, il costo API è ridotto all'osso.
 
 Uniformità: Si evita il rischio che l'AI generi immagini leggermente diverse (es. un logo spostato) tra un social e l'altro.
 
 Velocità: Il download da Google Drive avviene una sola volta, velocizzando l'intero processo di archiviazione FTP.
 
-Documentazione Tecnica n8n Versione: 2.3 Focus: Asset Unico Cross-Social
+
+# Google Sheet Template (1-click copy)
+
+Questo flusso di lavoro è "collegato" a un foglio di calcolo Google denominato Social_Media_Automation e prevede due schede con intestazioni specifiche.
+
+Crea una tua copia del modello (consigliato):
+https://docs.google.com/spreadsheets/d/1k95gbsKgYnPj3fl9b7rooFMTf8jYntBNfrZ-3VOZ7OU/edit?usp=copy
+
+Dopo aver copiato, mantieni esattamente il nome del foglio di calcolo e i nomi delle schede:
+
+Tab 1: Risposte_del_modulo
+
+Tab 2: Variabili_di_input-output
+
+Do not rename the required columns (headers). The workflow matches them by name.
+
+Required columns — Tab 1 (Risposte_del_modulo):
+
+Informazioni cronologiche
+
+Indirizzo email
+
+Titolo campagna
+
+Su quali piattaforme vuoi pubblicare?
+
+Vuoi pubblicare un'immagine?
+
+Descrizione immagine:
+
+Carica la tua immagine
+
+Vuoi pubblicare un video?
+
+Descrizione video
+
+Carica il tuo video
+
+Testo del post Facebook
+
+Hashtag Facebook
+
+Media da utilizzare Facebook
+
+Data e ora pubblicazione Facebook
+
+Testo del post Instagram
+
+Hashtag Instagram
+
+Media da utilizzare Instagram
+
+Data e ora pubblicazione Instagram
+
+Testo del post TikTok
+
+Hashtag TikTok
+
+Media da utilizzare TikTok
+
+Data e ora pubblicazione TikTok
+
+Testo del post YouTube
+
+Hashtag YouTube
+
+Media da utilizzare YouTube
+
+Data e ora pubblicazione YouTube
+
+Destinatari WhatsApp (separati da una virgola)
+
+Testo del post WhatsApp
+
+Hashtag WhatsApp
+
+Media da utilizzare WhatsApp
+
+Data e ora pubblicazione WhatsApp
+
+Testo del post X
+
+Hashtag X/Twitter
+
+Media da utilizzare X
+
+Data e ora pubblicazione X
+
+import_status
+
+source_row
+
+Required columns — Tab 2 (Variabili_di_input-output):
+
+id
+
+session_id
+
+import_source_row
+
+user_email
+
+campaign_title
+
+platform
+
+post_text
+
+hashtags
+
+media_source
+
+media_type
+
+media_variant
+
+scheduled_time
+
+publish_mode
+
+target_phone_number
+
+status
+
+approval_flag
+
+generate_common_image
+
+common_image_prompt
+
+common_image_status
+
+common_image_url
+
+generate_common_video
+
+common_video_prompt
+
+common_video_status
+
+common_video_url
+
+public_url
+
+local_path
+
+saved_locally
+
+final_filename
+
+remote_filename
+
+remotePath
+
+local_full_path
+
+remote_full_path
+
+publish_attempts
+
+error_message
+
+calendar_event_id
+
+id_image
+
+sheet_id
+
+do_calendar
+
+
+
+## Documentazione Tecnica n8n Versione: 2.3 
+## Focus: Asset Unico Cross-Social
 
 ## ⚖️ Licenza e Condizioni d'Uso
 Questo progetto è rilasciato sotto licenza **PolyForm Noncommercial 1.0.0**. 
@@ -89,7 +262,7 @@ Questo progetto è rilasciato sotto licenza **PolyForm Noncommercial 1.0.0**.
 - L'utilizzo dei workflow per attività commerciali, agenzie o servizi a pagamento senza autorizzazione.
 - La vendita del codice o di derivati.
 
-Per proposte di collaborazione o licenze commerciali, contattami su: orvio@yahoo.com
+## Per proposte di collaborazione o licenze commerciali, contattami su: orvio@yahoo.com
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -186,6 +359,178 @@ To keep control centralized, the `Variabili_di_input-output` database uses:
 * **Uniformity:** Avoids the risk that the AI generates slightly different images (e.g., a shifted logo) across platforms.
 * **Speed:** Downloading from Google Drive happens only once, speeding up the entire FTP archiving process.
 
+
+# Google Sheet Template (1-click copy)
+
+This workflow is “wired” to a Google Spreadsheet named Social_Media_Automation and expects two tabs with specific headers.
+
+Create your own copy of the template (recommended):
+https://docs.google.com/spreadsheets/d/1k95gbsKgYnPj3fl9b7rooFMTf8jYntBNfrZ-3VOZ7OU/edit?usp=copy
+
+After copying, keep the spreadsheet name and tab names exactly:
+
+Tab 1: Risposte_del_modulo
+
+Tab 2: Variabili_di_input-output
+
+Do not rename the required columns (headers). The workflow matches them by name.
+
+Required columns — Tab 1 (Risposte_del_modulo):
+
+Informazioni cronologiche
+
+Indirizzo email
+
+Titolo campagna
+
+Su quali piattaforme vuoi pubblicare?
+
+Vuoi pubblicare un'immagine?
+
+Descrizione immagine:
+
+Carica la tua immagine
+
+Vuoi pubblicare un video?
+
+Descrizione video
+
+Carica il tuo video
+
+Testo del post Facebook
+
+Hashtag Facebook
+
+Media da utilizzare Facebook
+
+Data e ora pubblicazione Facebook
+
+Testo del post Instagram
+
+Hashtag Instagram
+
+Media da utilizzare Instagram
+
+Data e ora pubblicazione Instagram
+
+Testo del post TikTok
+
+Hashtag TikTok
+
+Media da utilizzare TikTok
+
+Data e ora pubblicazione TikTok
+
+Testo del post YouTube
+
+Hashtag YouTube
+
+Media da utilizzare YouTube
+
+Data e ora pubblicazione YouTube
+
+Destinatari WhatsApp (separati da una virgola)
+
+Testo del post WhatsApp
+
+Hashtag WhatsApp
+
+Media da utilizzare WhatsApp
+
+Data e ora pubblicazione WhatsApp
+
+Testo del post X
+
+Hashtag X/Twitter
+
+Media da utilizzare X
+
+Data e ora pubblicazione X
+
+import_status
+
+source_row
+
+Required columns — Tab 2 (Variabili_di_input-output):
+
+id
+
+session_id
+
+import_source_row
+
+user_email
+
+campaign_title
+
+platform
+
+post_text
+
+hashtags
+
+media_source
+
+media_type
+
+media_variant
+
+scheduled_time
+
+publish_mode
+
+target_phone_number
+
+status
+
+approval_flag
+
+generate_common_image
+
+common_image_prompt
+
+common_image_status
+
+common_image_url
+
+generate_common_video
+
+common_video_prompt
+
+common_video_status
+
+common_video_url
+
+public_url
+
+local_path
+
+saved_locally
+
+final_filename
+
+remote_filename
+
+remotePath
+
+local_full_path
+
+remote_full_path
+
+publish_attempts
+
+error_message
+
+calendar_event_id
+
+id_image
+
+sheet_id
+
+do_calendar
+
+
+
 **n8n Technical Documentation – Version:** 2.3
 **Focus:** Single cross-social asset
 
@@ -205,4 +550,4 @@ This project is released under the **PolyForm Noncommercial 1.0.0** license.
 * Using the workflows for commercial activities, agencies, or paid services without authorization.
 * Selling the code or derivatives.
 
-For collaboration proposals or commercial licensing, contact me at: **[orvio@yahoo.com](mailto:orvio@yahoo.com)**
+## For collaboration proposals or commercial licensing, contact me at: **[orvio@yahoo.com](mailto:orvio@yahoo.com)**
